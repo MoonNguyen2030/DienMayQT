@@ -9,61 +9,74 @@
 <p>
     @Html.ActionLink("Thêm mới", "Create")
 </p>
-<table class="table table-striped">
-    <tr>
-        <th>
-            Mã sản phẩm
-        </th>
-        <th>
-            Tên sản phẩm
-        </th>
-        <th>
-            Gía bán
-        </th>
-        <th>
-            Gía gốc
-        </th>
-        <th>
-            Gía góp
-        </th>
-        <th>
-            Số lượng tồn
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LoaiSanPham.TenLoai)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model) {
+<table class="table table-striped" id="myTable">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaSP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenSP)
-            </td>
-            <td>
-                @item.GiaBan.ToString("N0")
-            </td>
-            <td>
-                @item.GiaGoc.ToString("N0")
-            </td>
-            <td>
-                @item.GiaGop.ToString("N0")
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SoLuongTon)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LoaiSanPham.TenLoai)
-            </td>
-            <td>
-                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Chi tiết", "Details", new { id = item.id }) |
-                @Html.ActionLink("Xóa", "Delete", new { id = item.id })
-            </td>
+            <th>
+                Mã sản phẩm
+            </th>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Gía bán
+            </th>
+            <th>
+                Gía gốc
+            </th>
+            <th>
+                Gía góp
+            </th>
+            <th>
+                Số lượng tồn
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoaiSanPham.TenLoai)
+            </th>
+            <th></th>
         </tr>
-    }
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaSP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenSP)
+                </td>
+                <td>
+                    @item.GiaBan.ToString("N0")
+                </td>
+                <td>
+                    @item.GiaGoc.ToString("N0")
+                </td>
+                <td>
+                    @item.GiaGop.ToString("N0")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuongTon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoaiSanPham.TenLoai)
+                </td>
+                <td>
+                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+    </tbody>
+
 
 </table>
+@section Scripts{
+    <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css "rel="stylesheet" />
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>$(document).ready(function () {
+    $('#myTable').DataTable();
+});
+    </script>
+        }
