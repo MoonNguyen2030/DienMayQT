@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Thêm mới", "Create")
 </p>
-<table class="table table-striped" id="myTable">
+<table class="table table-striped" id="MoonTable">
     <thead>
         <tr>
             <th>
@@ -31,7 +31,10 @@
                 Số lượng tồn
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LoaiSanPham.TenLoai)
+                Loại sản phẩm
+            </th>
+            <th>
+                Hình ảnh
             </th>
             <th></th>
         </tr>
@@ -41,10 +44,10 @@
         @foreach (var item in Model) {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MaSP)
+                   @item.MaSP
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TenSP)
+                    @item.TenSP
                 </td>
                 <td>
                     @item.GiaBan.ToString("N0")
@@ -56,15 +59,22 @@
                     @item.GiaGop.ToString("N0")
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SoLuongTon)
+                    @item.SoLuongTon.ToString("N0")
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.LoaiSanPham.TenLoai)
+                    @item.LoaiSanPham.TenLoai
                 </td>
                 <td>
-                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.id }) |
-                    @Html.ActionLink("Chi tiết", "Details", new { id = item.id }) |
-                    @Html.ActionLink("Xóa", "Delete", new { id = item.id })
+                    <img src="@Url.Action("Details",new{id=item.id})" />
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit",new{id = item.id})">
+                        <span class="glyphicon glyphicon-pencil"> |</span>
+                    </a>
+                    <a class="pull-right" href="@Url.Action("Delete",new{id=item.id})">
+                        <span class=" glyphicon glyphicon-trash"> |</span>
+                    </a>
+                   
                 </td>
             </tr>
         }
@@ -72,11 +82,16 @@
 
 
 </table>
-@section Scripts{
+@section scripts{
     <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css "rel="stylesheet" />
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script>$(document).ready(function () {
-    $('#myTable').DataTable();
+    <script>
+           $(document).ready(function () {
+               $('#MoonTable').DataTable();
+               $('.dataTables_filter').css("float","left");
+               $('.dataTables_length').css("float","right");
+
+
 });
     </script>
         }
