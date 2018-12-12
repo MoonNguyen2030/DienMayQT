@@ -156,5 +156,10 @@ namespace DienmayQT.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public FilePathResult Details()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
